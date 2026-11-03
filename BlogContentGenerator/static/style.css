@@ -1,0 +1,781 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4f7ff 0%,
+            #eef2ff 50%,
+            #f8fafc 100%
+        );
+
+    color: #172033;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+
+    height: 70px;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border-bottom: 1px solid #e5e9f2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    backdrop-filter: blur(12px);
+}
+
+
+.nav-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    color: #1d3f91;
+}
+
+
+.nav-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 14px;
+
+    color: #566174;
+
+    font-weight: 500;
+}
+
+
+.status-dot {
+
+    width: 9px;
+
+    height: 9px;
+
+    background: #22c55e;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 4px rgba(34, 197, 94, 0.12);
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+
+    text-align: center;
+
+    max-width: 850px;
+
+    margin: 70px auto 45px;
+
+    padding: 0 20px;
+}
+
+
+.hero-badge {
+
+    display: inline-block;
+
+    padding: 8px 16px;
+
+    background: #e9efff;
+
+    color: #3157b7;
+
+    border: 1px solid #d5dfff;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 20px;
+}
+
+
+.hero h1 {
+
+    font-size: clamp(36px, 5vw, 58px);
+
+    line-height: 1.1;
+
+    letter-spacing: -1.5px;
+
+    color: #172033;
+
+    margin-bottom: 20px;
+}
+
+
+.hero h1 span {
+
+    color: #3157b7;
+}
+
+
+.hero p {
+
+    max-width: 650px;
+
+    margin: auto;
+
+    color: #697386;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.main-container {
+
+    width: 92%;
+
+    max-width: 1050px;
+
+    margin: auto;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.card {
+
+    background: rgba(255, 255, 255, 0.98);
+
+    border: 1px solid #e4e8f0;
+
+    border-radius: 20px;
+
+    padding: 32px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 15px 45px rgba(30, 50, 90, 0.08);
+}
+
+
+.card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 30px;
+}
+
+
+.card-header h2 {
+
+    color: #1d3f91;
+
+    font-size: 23px;
+
+    margin-bottom: 7px;
+}
+
+
+.card-header p {
+
+    color: #7a8496;
+
+    font-size: 14px;
+}
+
+
+.step-number {
+
+    background: #eef2ff;
+
+    color: #3157b7;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.form-group {
+
+    margin-bottom: 22px;
+
+    flex: 1;
+}
+
+
+.form-row {
+
+    display: flex;
+
+    gap: 20px;
+}
+
+
+label {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #30394b;
+
+    font-size: 14px;
+
+    font-weight: 650;
+}
+
+
+input,
+select {
+
+    width: 100%;
+
+    height: 48px;
+
+    border: 1px solid #d8deea;
+
+    border-radius: 10px;
+
+    padding: 0 14px;
+
+    background: #fbfcfe;
+
+    color: #20293a;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+input::placeholder {
+
+    color: #a1a9b8;
+}
+
+
+input:focus,
+select:focus {
+
+    background: white;
+
+    border-color: #3157b7;
+
+    box-shadow:
+        0 0 0 4px rgba(49, 87, 183, 0.1);
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.button-row {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 5px;
+}
+
+
+.generate-btn {
+
+    flex: 1;
+
+    height: 52px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #3157b7,
+            #1d3f91
+        );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(49, 87, 183, 0.22);
+
+    transition: 0.2s;
+}
+
+
+.generate-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(49, 87, 183, 0.3);
+}
+
+
+.generate-btn:disabled {
+
+    opacity: 0.7;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+.clear-btn {
+
+    width: 120px;
+
+    height: 52px;
+
+    border: 1px solid #d8deea;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #596579;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.clear-btn:hover {
+
+    background: #f5f7fb;
+
+    border-color: #c6ccda;
+}
+
+
+/* =========================================
+   LOADING
+========================================= */
+
+.loading {
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    background: white;
+
+    border: 1px solid #e4e8f0;
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    margin-bottom: 25px;
+
+    color: #3157b7;
+
+    box-shadow:
+        0 8px 25px rgba(30, 50, 90, 0.06);
+}
+
+
+.loading p {
+
+    color: #7a8496;
+
+    font-size: 13px;
+
+    margin-top: 3px;
+}
+
+
+.spinner {
+
+    width: 28px;
+
+    height: 28px;
+
+    border: 3px solid #dce4f7;
+
+    border-top-color: #3157b7;
+
+    border-radius: 50%;
+
+    animation: spin 0.8s linear infinite;
+}
+
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================
+   OUTPUT TOOLBAR
+========================================= */
+
+.output-toolbar {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-bottom: 15px;
+
+    border-bottom: 1px solid #edf0f5;
+
+    margin-bottom: 18px;
+
+    color: #8992a3;
+
+    font-size: 13px;
+}
+
+
+.copy-btn {
+
+    border: 1px solid #d8deea;
+
+    background: white;
+
+    color: #3157b7;
+
+    padding: 8px 14px;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.copy-btn:hover {
+
+    background: #eef2ff;
+}
+
+
+/* =========================================
+   BLOG OUTPUT
+========================================= */
+
+.blog-output {
+
+    min-height: 320px;
+
+    background: #fafbfe;
+
+    border: 1px solid #e5e9f1;
+
+    border-radius: 12px;
+
+    padding: 28px;
+
+    line-height: 1.8;
+
+    color: #30394b;
+
+    font-size: 15px;
+}
+
+
+.blog-content {
+
+    white-space: normal;
+
+    word-wrap: break-word;
+}
+
+
+.blog-content strong {
+
+    display: block;
+
+    color: #1d3f91;
+
+    font-size: 18px;
+
+    margin-top: 18px;
+
+    margin-bottom: 8px;
+}
+
+
+.blog-content strong:first-child {
+
+    margin-top: 0;
+
+    font-size: 22px;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-state {
+
+    min-height: 260px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    color: #8992a3;
+}
+
+
+.empty-icon {
+
+    font-size: 42px;
+
+    margin-bottom: 15px;
+}
+
+
+.empty-state h3 {
+
+    color: #4d586b;
+
+    font-size: 18px;
+
+    margin-bottom: 8px;
+}
+
+
+.empty-state p {
+
+    max-width: 430px;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.error-message {
+
+    padding: 18px;
+
+    background: #fff4f4;
+
+    border: 1px solid #ffd5d5;
+
+    border-radius: 10px;
+
+    color: #c03939;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    color: #687386;
+
+    font-size: 14px;
+}
+
+
+footer span {
+
+    margin: 0 8px;
+
+    color: #b1b7c3;
+}
+
+
+.footer-small {
+
+    margin-top: 8px;
+
+    font-size: 12px;
+
+    color: #9aa2b1;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+
+        padding: 0 20px;
+    }
+
+
+    .nav-status {
+
+        font-size: 12px;
+    }
+
+
+    .hero {
+
+        margin-top: 45px;
+    }
+
+
+    .hero h1 {
+
+        font-size: 38px;
+    }
+
+
+    .form-row {
+
+        flex-direction: column;
+
+        gap: 0;
+    }
+
+
+    .button-row {
+
+        flex-direction: column;
+    }
+
+
+    .generate-btn,
+    .clear-btn {
+
+        width: 100%;
+    }
+
+
+    .card {
+
+        padding: 22px;
+    }
+
+
+    .card-header h2 {
+
+        font-size: 20px;
+    }
+
+
+    .blog-output {
+
+        padding: 20px;
+    }
+
+}

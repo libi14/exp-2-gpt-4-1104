@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Blog Studio</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="nav-logo">
+            🤖 <span>AI Blog Studio</span>
+        </div>
+
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            Ollama Online
+        </div>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <header class="hero">
+
+        <div class="hero-badge">
+            ✨ AI-Powered Content Generation
+        </div>
+
+        <h1>
+            Create Professional Blogs
+            <span>with AI</span>
+        </h1>
+
+        <p>
+            Generate high-quality, structured blog content using
+            Ollama and Llama 3.2.
+        </p>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-container">
+
+
+        <!-- INPUT CARD -->
+
+        <section class="card input-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>📝 Create Your Blog</h2>
+
+                    <p>
+                        Customize your content using the options below.
+                    </p>
+
+                </div>
+
+                <div class="step-number">
+                    01
+                </div>
+
+            </div>
+
+
+            <!-- TOPIC -->
+
+            <div class="form-group">
+
+                <label for="topic">
+                    Blog Topic
+                </label>
+
+                <input
+                    type="text"
+                    id="topic"
+                    placeholder="e.g. Artificial Intelligence in Education"
+                >
+
+            </div>
+
+
+            <!-- STYLE + TONE -->
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="style">
+                        Writing Style
+                    </label>
+
+                    <select id="style">
+
+                        <option>Professional</option>
+                        <option>Informative</option>
+                        <option>Creative</option>
+                        <option>Technical</option>
+                        <option>Casual</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="tone">
+                        Tone
+                    </label>
+
+                    <select id="tone">
+
+                        <option>Friendly</option>
+                        <option>Professional</option>
+                        <option>Educational</option>
+                        <option>Conversational</option>
+                        <option>Formal</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- WORD COUNT + AUDIENCE -->
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="word_count">
+                        Word Count
+                    </label>
+
+                    <input
+                        type="number"
+                        id="word_count"
+                        value="200"
+                        min="100"
+                        max="2000"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="audience">
+                        Target Audience
+                    </label>
+
+                    <input
+                        type="text"
+                        id="audience"
+                        value="Engineering Students"
+                        placeholder="e.g. Students"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="button-row">
+
+                <button
+                    class="generate-btn"
+                    onclick="generateBlog()"
+                    id="generate-button"
+                >
+
+                    <span>🚀</span>
+                    Generate Blog
+
+                </button>
+
+
+                <button
+                    class="clear-btn"
+                    onclick="clearForm()"
+                >
+
+                    ↻ Clear
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- LOADING -->
+
+        <div id="loading" class="loading">
+
+            <div class="spinner"></div>
+
+            <div>
+
+                <strong>AI is writing your blog...</strong>
+
+                <p>
+                    Llama 3.2 is generating your content
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- OUTPUT CARD -->
+
+        <section class="card output-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>📄 Generated Blog</h2>
+
+                    <p>
+                        Your AI-generated content will appear here.
+                    </p>
+
+                </div>
+
+                <div class="step-number">
+                    02
+                </div>
+
+            </div>
+
+
+            <!-- OUTPUT TOOLBAR -->
+
+            <div class="output-toolbar">
+
+                <span id="word-info">
+                    Ready to generate
+                </span>
+
+                <button
+                    class="copy-btn"
+                    onclick="copyBlog()"
+                >
+                    📋 Copy
+                </button>
+
+            </div>
+
+
+            <!-- BLOG -->
+
+            <div id="blog-output" class="blog-output">
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        ✍️
+                    </div>
+
+                    <h3>Your blog will appear here</h3>
+
+                    <p>
+                        Enter a topic and click
+                        <strong>Generate Blog</strong>
+                        to create your content.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            🤖 AI Blog Studio
+            <span>•</span>
+            Powered by Ollama + Llama 3.2
+        </p>
+
+        <p class="footer-small">
+            AI-assisted content generation for educational purposes
+        </p>
+
+    </footer>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        async function generateBlog() {
+
+            const topic =
+                document.getElementById("topic").value;
+
+            const style =
+                document.getElementById("style").value;
+
+            const tone =
+                document.getElementById("tone").value;
+
+            const word_count =
+                document.getElementById("word_count").value;
+
+            const audience =
+                document.getElementById("audience").value;
+
+            const output =
+                document.getElementById("blog-output");
+
+            const loading =
+                document.getElementById("loading");
+
+            const button =
+                document.getElementById("generate-button");
+
+            const wordInfo =
+                document.getElementById("word-info");
+
+
+            // Check topic
+
+            if (topic.trim() === "") {
+
+                alert("Please enter a blog topic.");
+
+                document.getElementById("topic").focus();
+
+                return;
+
+            }
+
+
+            // Show loading
+
+            loading.style.display = "flex";
+
+            button.disabled = true;
+
+            button.innerHTML =
+                "⏳ Generating...";
+
+
+            output.innerHTML = "";
+
+
+            wordInfo.innerText =
+                "Generating content...";
+
+
+            try {
+
+                const response =
+                    await fetch("/generate", {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body: JSON.stringify({
+
+                            topic: topic,
+
+                            style: style,
+
+                            tone: tone,
+
+                            word_count: word_count,
+
+                            audience: audience
+
+                        })
+
+                    });
+
+
+                const data =
+                    await response.json();
+
+
+                if (data.success) {
+
+                    displayBlog(data.blog);
+
+                }
+
+                else {
+
+                    output.innerHTML = `
+                        <div class="error-message">
+                            ❌ ${data.error}
+                        </div>
+                    `;
+
+                    wordInfo.innerText =
+                        "Generation failed";
+
+                }
+
+            }
+
+            catch (error) {
+
+                output.innerHTML = `
+                    <div class="error-message">
+                        ❌ Unable to connect to the server.
+                        <br><br>
+                        Make sure Flask and Ollama are running.
+                    </div>
+                `;
+
+                wordInfo.innerText =
+                    "Connection error";
+
+                console.error(error);
+
+            }
+
+
+            // Hide loading
+
+            loading.style.display = "none";
+
+            button.disabled = false;
+
+            button.innerHTML =
+                "🚀 Generate Blog";
+
+        }
+
+
+
+        // ===============================
+        // DISPLAY BLOG
+        // ===============================
+
+        function displayBlog(blog) {
+
+            const output =
+                document.getElementById("blog-output");
+
+            const wordInfo =
+                document.getElementById("word-info");
+
+
+            // Escape HTML
+
+            let formatted =
+                blog
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;");
+
+
+            // Convert markdown headings
+
+            formatted =
+                formatted.replace(
+                    /\*\*(.*?)\*\*/g,
+                    "<strong>$1</strong>"
+                );
+
+
+            // Convert line breaks
+
+            formatted =
+                formatted.replace(
+                    /\n/g,
+                    "<br>"
+                );
+
+
+            output.innerHTML =
+                `<div class="blog-content">${formatted}</div>`;
+
+
+            // Word count
+
+            const words =
+                blog.trim().split(/\s+/).length;
+
+
+            wordInfo.innerText =
+                `${words} words generated`;
+
+        }
+
+
+
+        // ===============================
+        // COPY BLOG
+        // ===============================
+
+        async function copyBlog() {
+
+            const blogElement =
+                document.querySelector(".blog-content");
+
+            if (!blogElement) {
+
+                alert("Generate a blog first.");
+
+                return;
+
+            }
+
+
+            const text =
+                blogElement.innerText;
+
+
+            try {
+
+                await navigator.clipboard.writeText(text);
+
+                const button =
+                    document.querySelector(".copy-btn");
+
+                button.innerText =
+                    "✅ Copied!";
+
+
+                setTimeout(() => {
+
+                    button.innerText =
+                        "📋 Copy";
+
+                }, 2000);
+
+            }
+
+            catch (error) {
+
+                alert("Unable to copy the blog.");
+
+            }
+
+        }
+
+
+
+        // ===============================
+        // CLEAR FORM
+        // ===============================
+
+        function clearForm() {
+
+            document.getElementById("topic").value = "";
+
+            document.getElementById("style").value =
+                "Professional";
+
+            document.getElementById("tone").value =
+                "Friendly";
+
+            document.getElementById("word_count").value =
+                "200";
+
+            document.getElementById("audience").value =
+                "Engineering Students";
+
+
+            document.getElementById("blog-output").innerHTML = `
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        ✍️
+                    </div>
+
+                    <h3>Your blog will appear here</h3>
+
+                    <p>
+                        Enter a topic and click
+                        <strong>Generate Blog</strong>
+                        to create your content.
+                    </p>
+
+                </div>
+
+            `;
+
+
+            document.getElementById("word-info").innerText =
+                "Ready to generate";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
